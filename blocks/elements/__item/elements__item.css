@@ -1,0 +1,11 @@
+.elements__item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: #fff;
+    max-width: 282px;
+    min-height: 361px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

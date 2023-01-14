@@ -1,0 +1,16 @@
+.elements__like {
+    background-image: url(../../../images/Heart.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    width: 25px;
+    height: 19px;
+    border: none;
+    background-color: #fff;
+    margin-right: 20px;
+    box-sizing: border-box;
+}
+
+.elements__like:hover {
+    opacity: 0.8;
+}
