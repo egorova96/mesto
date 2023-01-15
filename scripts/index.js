@@ -1,12 +1,13 @@
-document.querySelector('.popup')
 const popupElement = document.querySelector('.popup');
 const popupCloseButtonElement = popupElement.querySelector('.popup__close-button');
 const popupOpenButtonElement = document.querySelector('.profile__edit-button');
 let formElement = popupElement.querySelector('.form');  
 let nameInput = formElement.querySelector('.form__input_type_name');
 let jobInput = formElement.querySelector('.form__input_type_description');
+let formSaveButton = formElement.querySelector('.form__save-button');
 let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
+let formSubmitButton = document.querySelector('form__save-button');
  
 //ОТКРЫТИЕ ПОПАПА
 const openPopup = function() {
@@ -29,7 +30,8 @@ function handleFormSubmit (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileDescription.textContent = jobInput.value;
+    closePopup();
 }
 
-formElement.addEventListener('submit', handleFormSubmit); 
-popupElement.addEventListener('submit', closePopup);
+formSaveButton.addEventListener('click', handleFormSubmit);
+//formElement.addEventListener('submit', handleFormSubmit); 

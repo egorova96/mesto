@@ -1,7 +1,7 @@
 .profile__edit-button {
     width: 24px;
     height: 24px;
-    background-image: url(../../../images/Pen.png);
+    background-image: url(../../../images/pen.png);
     background-color: black;
     background-repeat: no-repeat;
     background-size: 10px;
@@ -17,6 +17,7 @@
 
 @media screen and (max-width: 1050px) {
     .profile__edit-button {
-        margin-bottom: 5px;
+        width: 18px;
+        height: 18px;
     }
 }
