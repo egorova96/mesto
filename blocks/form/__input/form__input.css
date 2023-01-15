@@ -3,10 +3,10 @@
     border: #fff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     max-width: 358px;
-    line-height: 2;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-size: 14px;
     line-height: 17px;
+    padding-bottom: 13px;
 }
 
 .form__input:not(:first-child) {
@@ -15,6 +15,6 @@
 
 @media screen and (max-width: 1050px) {
     .form__input:not(:first-child) {
-        margin-bottom: 45px;
+        margin-bottom: 30px;
     }
 }
