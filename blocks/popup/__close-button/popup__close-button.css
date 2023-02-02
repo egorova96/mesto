@@ -9,7 +9,9 @@
     border: none;
     left: 100%;
     top:-10%;
+    cursor: pointer;
 }
+
 .popup__close-button:hover {
     opacity: 0.6;
 }
@@ -17,10 +19,9 @@
 @media screen and (max-width: 1050px) {
     .popup__close-button {
         width: 20px;
-        height: 20px;
+        height: 20px; 
         left: 93%;
         top: -10%;
-        box-sizing: border-box;
         background-size: contain;
     }
 }
