@@ -19,7 +19,7 @@
 @media screen and (max-width: 1050px) {
     .popup__close-button {
         width: 20px;
-        height: 20px; 
+        height: 20px;
         left: 93%;
         top: -10%;
         background-size: contain;
