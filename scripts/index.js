@@ -140,7 +140,7 @@ imageSaveButton.addEventListener('click', togglePopup);
 
   createCard();
 
-  imageSaveButton.addEventListener('click', (evt) => {
+  imageSaveButton.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const newCard = [];
     newCard.name = placeInputTitle.value;
