@@ -5,3 +5,7 @@
     height: 282px;
     position: relative;
 }
+
+.elements__pic:hover {
+    opacity: 0.8;
+}
