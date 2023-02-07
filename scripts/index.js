@@ -77,11 +77,6 @@ profilePopupClose.addEventListener('click', function () {
   togglePopup(profilePopup)
 });
 
-formSaveButtonProfile.addEventListener('click', function () {
-  togglePopup(profilePopup)
-});
-
-
 placePopupClose.addEventListener('click', function () {
   togglePopup(placePopup)
 });
@@ -90,11 +85,6 @@ imagePopupClose.addEventListener('click', function () {
   togglePopup(imagePopup)
 });
 
-imageSaveButton.addEventListener('click', function () {
-  togglePopup(placePopup)
-});
-
-
 
 //ЗАПОЛНЕНИЕ ФОРМЫ 
 
@@ -102,52 +92,55 @@ function handleFormSubmit (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileDescription.textContent = jobInput.value;
-    togglePopup;
+    togglePopup(profilePopup);
 }
 
-formProfile.addEventListener('submit', handleFormSubmit);
-formPlace.addEventListener('submit', handleFormSubmit);
-imageSaveButton.addEventListener('click', togglePopup);
+function handleCardFormSubmit (evt) {
+  evt.preventDefault();
+  const newCardData = {}
+  newCardData.name = placeInputTitle.value;
+  newCardData.link = placeInputLink.value;
+  const newCard = createCard(newCardData);
+  renderCard(newCard, imageArea);
+  togglePopup(placePopup);
+}
 
+//УДАЛЕНИЕ 
 
+function deleteCard (e) {
+  e.target.closest('.elements__item').remove();
+}
 //СОЗДАНИЕ КАРТОЧЕК
 
- function renderCards (elements) {
-
+function createCard (element) {
   const card = template.cloneNode(true);
-
-    card.querySelector('.elements__name').textContent = elements.name;
-    card.querySelector('.elements__pic').src = elements.link;
-    card.querySelector('.elements__pic').alt = elements.name;
-      const imagePopupCard = imagePopup.querySelector('.popup__card');
-      const imagePopupText = imagePopup.querySelector('.popup__text');
-      const cardImage = card.querySelector('.elements__pic');
-        cardImage.addEventListener('click', function () {
-          imagePopupCard.src = elements.link;
-          imagePopupText.textContent = elements.name;
-          togglePopup(imagePopup);
-      });
-        card.querySelector('.elements__delete-button').addEventListener('click', deleteCard);
-        card.querySelector('.elements__like').addEventListener('click', function (evt) {
-          evt.target.classList.toggle('elements__like_active'); 
-         });
-        imageArea.prepend(card);
+  card.querySelector('.elements__name').textContent = element.name;
+  card.querySelector('.elements__pic').src = element.link;
+  card.querySelector('.elements__pic').alt = element.name;
+  const imagePopupCard = imagePopup.querySelector('.popup__card');
+  const imagePopupText = imagePopup.querySelector('.popup__text');
+  const cardImage = card.querySelector('.elements__pic');
+  cardImage.addEventListener('click', function () {
+    imagePopupCard.src = element.link;
+    imagePopupText.textContent = element.name;
+    togglePopup(imagePopup);
+  });
+  card.querySelector('.elements__delete-button').addEventListener('click', deleteCard);
+  card.querySelector('.elements__like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('elements__like_active'); 
+  });
+  return card;
   }
 
-  function createCard () {
-    initialsCards.forEach(renderCards)
-    }
+  function renderCard(card, container) {
+    container.prepend(card);
+  }
 
-  createCard();
-
-  imageSaveButton.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    const newCard = [];
-    newCard.name = placeInputTitle.value;
-    newCard.link = placeInputLink.value;
-    renderCards(newCard);
+  initialsCards.forEach(cardData => {
+    const newCard = createCard(cardData);
+    renderCard(newCard, imageArea)
   });
 
-  function deleteCard (e) {
-    e.target.closest('.elements__item').remove();
-  }
+  formProfile.addEventListener('submit', handleFormSubmit);
+  imageSaveButton.addEventListener('click', togglePopup);
+  formPlace.addEventListener('submit', handleCardFormSubmit);
