@@ -12,7 +12,7 @@
     border: 0;
 }
 
-.form__save-button:hover {
+.form__save-button:hover:enabled {
     opacity: 0.8;
 }
 

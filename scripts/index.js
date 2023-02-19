@@ -58,6 +58,7 @@ const profileDescription = document.querySelector('.profile__description');
 
 const togglePopup = function(popup) { 
     popup.classList.toggle('popup_opened');
+    console.log(popup);
 };
 
 //OPEN
@@ -102,6 +103,7 @@ function handleCardFormSubmit (evt) {
   newCardData.link = placeInputLink.value;
   const newCard = createCard(newCardData);
   renderCard(newCard, imageArea);
+  console.log(placePopup);
   togglePopup(placePopup);
 }
 
@@ -142,5 +144,42 @@ function createCard (element) {
   });
 
   formProfile.addEventListener('submit', handleFormSubmit);
-  imageSaveButton.addEventListener('click', togglePopup);
   formPlace.addEventListener('submit', handleCardFormSubmit);
+
+  //ЗАКРЫТИЕ ПО ОВЕРЛЕЮ
+
+  const popupOverlay = document.querySelectorAll('.popup');
+  
+  const closePopupOverlay = function(event) {
+    console.log(event.target, event.currentTarget);
+    if (event.target !== event.currentTarget) {
+      return
+    } else {
+      event.target.classList.remove('popup_opened');
+    }
+  }
+  popupOverlay.forEach((item) => { item.addEventListener('click', closePopupOverlay) });
+
+  //ЗАКРЫТИЕ ПО ESC
+
+  document.addEventListener('keydown', function(event) {
+    const element = document.querySelector('.popup_opened');
+    if (event.key === 'Escape' && element) {
+      togglePopup(element);
+    }
+    });
+
+//ДЕАКТИВАЦИЯ КНОПКИ
+
+const toggleButtonState = (inputList, buttonElement) => {
+  // Если есть хотя бы один невалидный инпут
+  if (hasInvalidInput(inputList)) {
+    // сделай кнопку неактивной
+    buttonElement.classList.add('form__save-button_disabled');
+    buttonElement.setAttribute('disabled', ' ');
+  } else {
+    // иначе сделай кнопку активной
+    buttonElement.classList.remove('form__save-button_disabled');
+    buttonElement.removeAttribute('disabled', ' ');
+  }
+}; 
