@@ -115,9 +115,6 @@ initialsCards.forEach((cardData) => {
   renderCard(newCard, imageArea);
 });
 
-formProfile.addEventListener("submit", handleProfileFormSubmit);
-formPlace.addEventListener("submit", handleCardFormSubmit);
-
 // ЗАКРЫТИЕ ПО ОВЕРЛЕЮ И КРЕСТИКУ
 popupList.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
@@ -137,3 +134,6 @@ const closePopupEsc = function (event) {
     popupClose(element);
   }
 };
+
+formProfile.addEventListener("submit", handleProfileFormSubmit);
+formPlace.addEventListener("submit", handleCardFormSubmit);
