@@ -13,4 +13,5 @@
     white-space: nowrap;
     overflow: hidden;
     box-sizing: border-box;
+    max-width: 200px;
 }

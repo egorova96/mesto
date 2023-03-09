@@ -1,6 +1,10 @@
-import { initialsCards } from './cardsMassive.js';
+import {initialsCards } from './cardsMassive.js';
 import {Card} from './Сards.js';
 import { FormValidator } from './FormValidator.js';
+
+const imagePopup = document.querySelector(".popup_type_image");
+const openPopupImage = imagePopup.querySelector('.popup__card');
+const openPopupText = imagePopup.querySelector('.popup__text')
 
 const validationConfig = {
   formSelector: ".form",
@@ -54,6 +58,7 @@ placePopupOpen.addEventListener("click", function () {
   openPopup(placePopup);
 });
 
+
 //ЗАКРЫТИЕ ПОПАПА
 const popupClose = function (popup) {
   document.removeEventListener("keydown", closePopupEsc);
@@ -89,8 +94,8 @@ const closePopupEsc = function (event) {
 };
 
 //СОЗДАНИЕ И ДОБАВЛЕНИЕ КАРТОЧКИ
-const createCard = (massiveData) => {
-  const card = new Card(massiveData, cardsSection);
+const createCard = (cardData) => {
+  const card = new Card(cardData, cardsSection);
   const cardElement = card.generateCard();
   return cardElement;
 };
@@ -112,8 +117,11 @@ function handleCardFormSubmit(evt) {
   ]
   renderCard(newCard);
   popupClose(placePopup);
-  formPlace.reset(); 
+  formPlace.reset();
+  placeFormValidator.blockSubmitButton(); 
 };
 
 formProfile.addEventListener("submit", handleProfileFormSubmit);
 formPlace.addEventListener("submit", handleCardFormSubmit);
+
+export {openPopup, imagePopup, openPopupImage, openPopupText};

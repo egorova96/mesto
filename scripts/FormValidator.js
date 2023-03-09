@@ -41,11 +41,19 @@ class FormValidator {
     }
   }
 
+ blockSubmitButton = () => {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._isValid(inputElement);
+    })
+  }
+
   _setEventListeners = () => {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._isValid(inputElement);
         this._toggleButtonState(this._validationConfig);
+        this.blockSubmitButton(this._validationConfig);
       });
     });
   }
@@ -56,13 +64,10 @@ class FormValidator {
     });
   }
 
-  enableValidation = () => {
-      const formList = Array.from(document.querySelectorAll(this._validationConfig.formSelector));
-      formList.forEach(() => {
+  enableValidation() {
         this._setEventListeners();
-      });
+      };
   }
-}
 
 export {FormValidator};
 

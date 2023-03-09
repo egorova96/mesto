@@ -1,11 +1,9 @@
-const imagePopup = document.querySelector(".popup_type_image");
-const openPopupImage = imagePopup.querySelector('.popup__card');
-const openPopupText = imagePopup.querySelector('.popup__text')
+import {openPopup, imagePopup, openPopupImage, openPopupText} from './index.js';
 
 class Card {
-  constructor(massiveData) {
-    this._name = massiveData.name;
-    this._link = massiveData.link; 
+  constructor(cardData, openPopup) {
+    this._name = cardData.name;
+    this._link = cardData.link; 
     this._templateSelector = '#cards-template';
   }
 
@@ -53,18 +51,14 @@ class Card {
   
   _handleOpenPopup() {
     openPopupImage.src = this._link;
-    openPopupText.textContent = this._name
-    imagePopup.classList.add('popup_opened');
-  }
-
-  _handleClosePopup() {
-    openPopupImage.src = '';
-    openPopupText.textContent = '';
-    imagePopup.classList.remove('popup_opened');
+    openPopupImage.alt = this._name;
+    openPopupText.textContent = this._name;
+    openPopup(imagePopup);
   }
 
   _deleteCard() {
-    this._element.closest(".elements__item").remove();
+    this._element.remove();
+    this._element = null;
   }
 };
 
