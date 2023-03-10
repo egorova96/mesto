@@ -3,8 +3,8 @@ import {Card} from './Сards.js';
 import { FormValidator } from './FormValidator.js';
 
 const imagePopup = document.querySelector(".popup_type_image");
-const openPopupImage = imagePopup.querySelector('.popup__card');
-const openPopupText = imagePopup.querySelector('.popup__text')
+const imagePopupCard = imagePopup.querySelector('.popup__card');
+const textPopupCard = imagePopup.querySelector('.popup__text')
 
 const validationConfig = {
   formSelector: ".form",
@@ -116,12 +116,11 @@ function handleCardFormSubmit(evt) {
     link: placeLinkInput.value}
   ]
   renderCard(newCard);
-  popupClose(placePopup);
+  popupClose(placePopup); 
   formPlace.reset();
-  placeFormValidator.blockSubmitButton(); 
 };
 
 formProfile.addEventListener("submit", handleProfileFormSubmit);
 formPlace.addEventListener("submit", handleCardFormSubmit);
 
-export {openPopup, imagePopup, openPopupImage, openPopupText};
+export {openPopup, imagePopup, imagePopupCard, textPopupCard};

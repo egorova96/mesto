@@ -1,20 +1,20 @@
 class FormValidator {
-  constructor(validationConfig, formList) {
+  constructor(validationConfig, form) {
     this._validationConfig = validationConfig;
-    this._formList = formList;
-    this._inputList = Array.from(this._formList.querySelectorAll(this._validationConfig.inputSelector));
-    this._buttonElement = this._formList.querySelector(this._validationConfig.submitButtonSelector);
+    this._form = form;
+    this._inputList = Array.from(this._form.querySelectorAll(this._validationConfig.inputSelector));
+    this._buttonElement = this._form.querySelector(this._validationConfig.submitButtonSelector);
   };
 
   _showInputError = (inputElement, errorMessage) => {
-  const errorElement = this._formList.querySelector(`.${inputElement.id}-error`);
+  const errorElement = this._form.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(this._validationConfig.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(this._validationConfig.errorClass);
   };
   
   _hideInputError = (inputElement) => {
-  const errorElement = this._formList.querySelector(`.${inputElement.id}-error`);
+  const errorElement = this._form.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(this._validationConfig.inputErrorClass);
   errorElement.textContent = " ";
   errorElement.classList.remove(this._validationConfig.errorClass);
@@ -43,9 +43,9 @@ class FormValidator {
 
  blockSubmitButton = () => {
     this._toggleButtonState();
-    this._inputList.forEach((inputElement) => {
-      this._isValid(inputElement);
-    })
+  this._form.addEventListener('reset', () => 
+  { setTimeout(() => {this._toggleButtonState() }, 1);
+  });
   }
 
   _setEventListeners = () => {

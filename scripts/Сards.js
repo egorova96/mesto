@@ -1,4 +1,4 @@
-import {openPopup, imagePopup, openPopupImage, openPopupText} from './index.js';
+import {openPopup, imagePopup, imagePopupCard, textPopupCard} from './index.js';
 
 class Card {
   constructor(cardData, openPopup) {
@@ -50,9 +50,9 @@ class Card {
 
   
   _handleOpenPopup() {
-    openPopupImage.src = this._link;
-    openPopupImage.alt = this._name;
-    openPopupText.textContent = this._name;
+    imagePopupCard.src = this._link;
+    imagePopupCard.alt = this._name;
+    textPopupCard.textContent = this._name;
     openPopup(imagePopup);
   }
 
