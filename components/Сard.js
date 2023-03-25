@@ -1,10 +1,11 @@
-import {openPopup, imagePopup, imagePopupCard, textPopupCard} from './index.js';
+// import {openPopup, imagePopup, imagePopupCard, textPopupCard} from './index.js';
 
 class Card {
-  constructor(cardData, openPopup) {
+  constructor(cardData, templateSelector, handleCardClick) {
     this._name = cardData.name;
     this._link = cardData.link; 
     this._templateSelector = '#cards-template';
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -17,26 +18,25 @@ class Card {
   }
 
   generateCard() {
-      // Запишем разметку в приватное поле _element. 
-    // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
-
-    // Добавим данные
     this._element.querySelector('.elements__pic').src = this._link;
     this._element.querySelector('.elements__name').textContent = this._name;
     this._element.querySelector('.elements__pic').alt = this._name;
     this._setEventListeners()
-    // Вернём элемент наружу
     return this._element;
   } 
+
+  _handleCardClick() {
+    this._handleCardClick({name: this._name, link: this._link});
+  }
 
   _setEventListeners() {
     this._element.querySelector('.elements__like').addEventListener('click', () => {
       this._handleLikeClick();
     });
 
-    this._element.querySelector('.elements__pic').addEventListener('click', () => {
-      this._handleOpenPopup();
+    this._element.querySelector('.elements__pic').addEventListener('click', (evt) => {
+      this._handleCardClick();
     });
     
     this._element.querySelector('.elements__delete-button').addEventListener('click', () => {
@@ -47,14 +47,6 @@ class Card {
   _handleLikeClick() {
     this._element.querySelector(".elements__like").classList.toggle("elements__like_active");
   };
-
-  
-  _handleOpenPopup() {
-    imagePopupCard.src = this._link;
-    imagePopupCard.alt = this._name;
-    textPopupCard.textContent = this._name;
-    openPopup(imagePopup);
-  }
 
   _deleteCard() {
     this._element.remove();
