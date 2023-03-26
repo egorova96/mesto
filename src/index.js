@@ -1,16 +1,17 @@
 import '../pages/index.css';
 import {Card} from '../components/Сard.js';
 import {FormValidator} from '../components/FormValidator.js';
-import {initialCards} from '../components/constants.js';
-import {formProfile} from '../components/constants.js';
-import {formPlace} from '../components/constants.js';
-import {addButton} from '../components/constants.js';
-import {editButton} from '../components/constants.js';
-import {validationConfig} from '../components/constants.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/Userinfo.js';
+import {initialCards} from '../utils/constants.js';
+import {formProfile} from '../utils/constants.js';
+import {formPlace} from '../utils/constants.js';
+import {addButton} from '../utils/constants.js';
+import {editButton} from '../utils/constants.js';
+import {validationConfig} from '../utils/constants.js';
+
 //--------------------------------------------------------------------------------------------------------------
 //Попап профиля
 const userInfo = new UserInfo ({nameSelector: '.profile__name', descriptionSelector: '.profile__description'})
@@ -68,6 +69,11 @@ function handleAddCardButtonClick() {
 }
 
 function handleEditProfileButtonClick() {
+  const { name, description } = userInfo.getUserInfo();
+  const nameInput = document.querySelector('.form__input_type_name');
+  const descriptionInput = document.querySelector('.form__input_type_description');
+  nameInput.value = name;
+  descriptionInput.value = description;
   profileFormValidator.blockSubmitButton()
   profilePopup.open();
 }

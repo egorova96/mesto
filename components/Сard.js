@@ -1,16 +1,13 @@
-// import {openPopup, imagePopup, imagePopupCard, textPopupCard} from './index.js';
-
 class Card {
   constructor(cardData, templateSelector, handleCardClick) {
     this._name = cardData.name;
     this._link = cardData.link; 
-    this._templateSelector = '#cards-template';
+    this._templateSelector = document.querySelector('#cards-template');
     this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
-    const cardTemplate = document
-      .querySelector(this._templateSelector)
+    const cardTemplate = this._templateSelector
       .content.querySelector('.elements__item')
       .cloneNode(true);
 
@@ -19,10 +16,14 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector('.elements__pic').src = this._link;
-    this._element.querySelector('.elements__name').textContent = this._name;
-    this._element.querySelector('.elements__pic').alt = this._name;
-    this._setEventListeners()
+    this._cardImage = this._element.querySelector('.elements__pic');
+    this._likeButton = this._element.querySelector('.elements__like');
+    this._cardTitle = this._element.querySelector('.elements__name');
+    this._deleteButton = this._element.querySelector('.elements__delete-button');
+    this._cardImage.src = this._link;
+    this._cardTitle.textContent = this._name;
+    this._cardImage.alt = this._name;
+    this._setEventListeners();
     return this._element;
   } 
 
@@ -31,21 +32,21 @@ class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector('.elements__like').addEventListener('click', () => {
+    this._likeButton.addEventListener('click', () => {
       this._handleLikeClick();
     });
 
-    this._element.querySelector('.elements__pic').addEventListener('click', (evt) => {
+    this._cardImage.addEventListener('click', (evt) => {
       this._handleCardClick();
     });
     
-    this._element.querySelector('.elements__delete-button').addEventListener('click', () => {
+    this._deleteButton.addEventListener('click', () => {
       this._deleteCard();
     })
   }
 
   _handleLikeClick() {
-    this._element.querySelector(".elements__like").classList.toggle("elements__like_active");
+    this._likeButton.classList.toggle("elements__like_active");
   };
 
   _deleteCard() {
@@ -55,3 +56,4 @@ class Card {
 };
 
 export {Card}
+
