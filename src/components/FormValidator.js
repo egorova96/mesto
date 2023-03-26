@@ -31,7 +31,7 @@ class FormValidator {
     };
   }
 
-  _toggleButtonState = () => {
+  toggleButtonState = () => {
     if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._validationConfig.inactiveButtonClass);
       this._buttonElement.setAttribute("disabled", " ");
@@ -41,25 +41,18 @@ class FormValidator {
     }
   }
 
- blockSubmitButton = () => {
-    this._toggleButtonState();
-  this._form.addEventListener('reset', () => 
-  { setTimeout(() => {this._toggleButtonState() }, 1);
-  });
-  this._form.removeEventListener('reset', () => 
-  { setTimeout(() => {this._toggleButtonState() }, 1);
-  });
-  }
-
   _setEventListeners = () => {
-    this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
-        this._isValid(inputElement);
-        this._toggleButtonState(this._validationConfig);
-        this.blockSubmitButton(this._validationConfig);
-      });
+    this._form.addEventListener('reset', () => 
+    { setTimeout(() => {this.toggleButtonState() }, 1);
     });
-  }
+      this._inputList.forEach((inputElement) => {
+        inputElement.addEventListener("input", () => {
+          this._isValid(inputElement);
+          this.toggleButtonState(this._validationConfig);
+          //this.blockSubmitButton(this._validationConfig);
+        });
+      });
+    }
 
   _hasInvalidInput = () => {
     return this._inputList.some((inputElement) => {

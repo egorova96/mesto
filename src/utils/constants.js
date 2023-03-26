@@ -36,7 +36,9 @@ const validationConfig = {
 const formProfile = document.querySelector(".form_type_profile");
 const formPlace = document.querySelector(".form_type_place");
 const addButton = document.querySelector('.profile__add-button');
-const editButton = document.querySelector('.profile__edit-button')
+const editButton = document.querySelector('.profile__edit-button');
+const nameInput = document.querySelector('.form__input_type_name');
+const descriptionInput = document.querySelector('.form__input_type_description');
 
 export {initialCards};
 export {validationConfig};
@@ -44,4 +46,6 @@ export {formProfile};
 export {formPlace};
 export {addButton};
 export {editButton};
+export {nameInput};
+export {descriptionInput};
 

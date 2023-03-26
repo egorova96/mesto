@@ -1,4 +1,4 @@
-import '../src/index.css';
+import './index.css';
 import {Card} from '../components/Сard.js';
 import {FormValidator} from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -11,6 +11,8 @@ import {formPlace} from '../utils/constants.js';
 import {addButton} from '../utils/constants.js';
 import {editButton} from '../utils/constants.js';
 import {validationConfig} from '../utils/constants.js';
+import { nameInput } from '../utils/constants.js';
+import { descriptionInput } from '../utils/constants.js';
 
 //--------------------------------------------------------------------------------------------------------------
 //Попап профиля
@@ -70,11 +72,9 @@ function handleAddCardButtonClick() {
 
 function handleEditProfileButtonClick() {
   const { name, description } = userInfo.getUserInfo();
-  const nameInput = document.querySelector('.form__input_type_name');
-  const descriptionInput = document.querySelector('.form__input_type_description');
   nameInput.value = name;
   descriptionInput.value = description;
-  profileFormValidator.blockSubmitButton()
+  profileFormValidator.toggleButtonState()
   profilePopup.open();
 }
 
