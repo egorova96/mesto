@@ -1,5 +1,5 @@
 .elements__delete-button {
-    background: url(../../../images/trash.svg);
+    background: url(../../../src/trash.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-color: transparent;
