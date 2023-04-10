@@ -1,16 +1,8 @@
 .elements__like {
-    background-image: url(../../../images/heart.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-    width: 25px;
-    height: 19px;
-    border: none;
-    background-color: #fff;
+    height: 43px;
+    max-width: 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin-right: 20px;
-    box-sizing: border-box;
-}
-
-.elements__like:hover {
-    opacity: 0.5;
 }

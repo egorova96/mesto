@@ -49,7 +49,6 @@ class FormValidator {
         inputElement.addEventListener("input", () => {
           this._isValid(inputElement);
           this.toggleButtonState(this._validationConfig);
-          //this.blockSubmitButton(this._validationConfig);
         });
       });
     }

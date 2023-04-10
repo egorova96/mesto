@@ -12,8 +12,9 @@
    </header>
    <main class="content">
    <section class="profile">
-        <div class="profile__container">
-            <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар пользователя"> 
+            <div class = "profile__avatar-edit">
+                <img class="profile__avatar" src="#" alt="Аватар пользователя"> 
+            </div>
             <div class="profile__edit">   
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -21,7 +22,6 @@
                 </div>
                 <p class="profile__description">Исследователь океана</p>
             </div>
-        </div>
         <button type="button" class="profile__add-button"></button>
     </section>
     <section class="elements">
@@ -63,13 +63,38 @@
             <p class="popup__text"></p>
         </div>
    </div>
+   <!-----AVATAR POPUP---->
+   <div class="popup popup_type_avatar">
+    <div class="popup__container">
+        <button type="button" class="popup__close-button"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form name="popupAvatarForm" class="form form_type_avatar" novalidate>
+            <input id="place-input" name="avatar" class="form__input form__input_type_avatar" type="url" placeholder="Ссылка на картинку" required minlength="2" value="">
+            <span class="form__input-error place-input-error"></span>
+            <button type="submit" class="form__save-button form__save-button_type_avatar form__save-button_disabled" disabled>Сохранить</button>
+        </form>
+    </div>
+   </div>
+   <!-----DELETE POPUP---->
+    <div class="popup popup_type_delete">
+        <div class="popup__container popup__container_type_delete">
+            <button type="button" class="popup__close-button"></button>
+            <h2 class="popup__title">Вы уверены?</h2>
+            <form name = "popupDeleteForm" class="form form_type_delete" novalidate>
+                <button type="submit" class="form__save-button form__save-button_type_delete">Да</button>
+            </form>
+        </div>
+    </div>
    <!-----TEMPLATE---->
    <template id="cards-template">
     <div class="elements__item">
         <img class="elements__pic" src='#' alt="">
         <div class="elements__description">
             <p class="elements__name"></p>
-            <button type="button" class="elements__like"></button> 
+            <div class="elements__like">
+                <button type="button" class="elements__like-button"></button> 
+                <span class="elements__likes-counter">0</span>
+            </div>
         </div>
         <button type="button" class="elements__delete-button"></button>
     </div>
