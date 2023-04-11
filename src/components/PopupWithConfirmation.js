@@ -17,6 +17,7 @@ open({cardId, cards}) {
 };
 
 setEventListeners() {
+  super.setEventListeners();
   this._form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     this._handleSubmit({cardId: this._cardId, cards: this._cards});

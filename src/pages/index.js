@@ -45,7 +45,10 @@ const handleProfileFormSubmit = (profileData) => {
   api.editProfile(profileData).then((result) => {
     userInfo.setUserInfo(result);
     profilePopup.close();
-  }).finally(() => {
+  }).catch((err) => {
+    console.log(err)
+  })
+  .finally(() => {
     profilePopup.submitProcess(false);
   })
 };
@@ -115,21 +118,29 @@ function handleCardFormSubmit(cardData) {
       cardSection.addItem(createCard(result), true);
       placePopup.close();
     })
+    .catch((err) => {
+      console.log(err)
+    })
     .finally(() => { placePopup.submitProcess(false)
   });
   };
-console.log(userInfo)
 
 const placePopup = new PopupWithForm('.popup_type_place', handleCardFormSubmit);
 placePopup.setEventListeners();
 //----------------------------------------------------------------------------------------------------------------
 //Попап смены аватара
 const handleAvatarFormSubmit = (data) => {
-  console.log(data);
+    avatarPopup.submitProcess(true);
     api.editAvatar(data)
     .then((res) => {userInfo.setAvatarImg(res);
     avatarPopup.close();
     })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      avatarPopup.submitProcess(false);
+    });
   }
 
 const avatarPopup = new PopupWithForm('.popup_type_avatar', handleAvatarFormSubmit);
